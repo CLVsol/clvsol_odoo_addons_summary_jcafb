@@ -2,7 +2,7 @@
 # Copyright (C) 2013-Today  Carlos Eduardo Vercelino - CLVsol
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SummaryLabTestRequest(models.Model):
@@ -42,7 +42,7 @@ class SummaryLabTestRequest(models.Model):
         store=False
     )
 
-    @api.multi
+    # @api.multi
     def _compute_lab_test_type_names(self):
         for r in self:
             lab_test_type_names = False

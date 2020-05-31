@@ -32,8 +32,8 @@ class Address(models.Model):
         store=False
     )
 
-    @api.multi
-    @api.multi
+    # @api.multi
+    # @api.multi
     def _address_summary_setup(self, dir_path, file_name):
 
         SummaryTemplate = self.env['clv.summary.template']

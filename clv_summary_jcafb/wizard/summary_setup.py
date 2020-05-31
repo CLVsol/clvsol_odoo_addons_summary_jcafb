@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -46,7 +46,7 @@ class SummarySetUp(models.TransientModel):
         default=_default_file_name
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -59,7 +59,7 @@ class SummarySetUp(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_summary_setup(self):
         self.ensure_one()
 
@@ -99,7 +99,7 @@ class SummarySetUp(models.TransientModel):
 
         return True
 
-    @api.multi
+    # @api.multi
     def do_populate_all_summaries(self):
         self.ensure_one()
 

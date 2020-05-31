@@ -4,7 +4,7 @@
 
 import logging
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -46,7 +46,7 @@ class PersonAuxSummarySetUp(models.TransientModel):
         default=_default_file_name
     )
 
-    @api.multi
+    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -59,7 +59,7 @@ class PersonAuxSummarySetUp(models.TransientModel):
         }
         return action
 
-    @api.multi
+    # @api.multi
     def do_person_aux_summary_setup(self):
         self.ensure_one()
 
@@ -71,7 +71,7 @@ class PersonAuxSummarySetUp(models.TransientModel):
 
         return True
 
-    @api.multi
+    # @api.multi
     def do_populate_all_persons_aux(self):
         self.ensure_one()
 
