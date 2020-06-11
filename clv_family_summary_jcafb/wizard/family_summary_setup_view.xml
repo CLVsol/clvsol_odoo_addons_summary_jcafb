@@ -36,10 +36,9 @@
     <act_window 
         id="clv_family_summary_setup_action"
         name="Family Summary Set Up"
-        src_model="clv.family"
+        binding_model="clv.family"
         res_model="clv.family.summary_setup"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 

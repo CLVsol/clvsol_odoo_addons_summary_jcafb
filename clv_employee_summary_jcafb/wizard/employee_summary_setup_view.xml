@@ -36,10 +36,9 @@
     <act_window 
         id="hr_employee_summary_setup_action"
         name="Employee Summary Set Up"
-        src_model="hr.employee"
+        binding_model="hr.employee"
         res_model="hr.employee.summary_setup"
         view_mode="form"
-        key2="client_action_multi"
         target="new"
     />
 
