@@ -5,7 +5,7 @@
 {
     'name': 'Summary (customizations for CLVhealth-JCAFB Solution)',
     'summary': 'Summary Module customizations for CLVhealth-JCAFB Solution.',
-    'version': '12.0.4.0',
+    'version': '14.0.5.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'CLVsol Solutions',
     'license': 'AGPL-3',
@@ -34,7 +34,6 @@
         'views/summary_family_view.xml',
         'views/summary_person_view.xml',
         'views/global_settings_view.xml',
-        'views/summary_menu_view.xml',
         'wizard/summary_setup_view.xml',
     ],
     'demo': [],
