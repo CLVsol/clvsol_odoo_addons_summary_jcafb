@@ -33,13 +33,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_summary_setup_action"
-        name="Summary Set Up"
-        binding_model="clv.summary"
-        res_model="clv.summary.summary_setup"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_summary_setup_action" model="ir.actions.act_window">
+        <field name="name">Summary Set Up</field>
+        <field name="binding_model_id" ref="model_clv_summary"/>
+        <field name="res_model">clv.summary.summary_setup</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
