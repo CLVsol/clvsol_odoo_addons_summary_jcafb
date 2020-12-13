@@ -32,8 +32,6 @@ class Employee(models.Model):
         store=False
     )
 
-    # @api.multi
-    # @api.multi
     def _employee_summary_setup(self, dir_path, file_name):
 
         SummaryTemplate = self.env['clv.summary.template']
@@ -82,8 +80,8 @@ class Employee(models.Model):
 
                 if action_call:
 
-                    summary.state = 'Unknown'
-                    summary.outcome_text = False
+                    # summary.state = 'Unknown'
+                    # summary.outcome_text = False
 
                     exec(action_call)
 
