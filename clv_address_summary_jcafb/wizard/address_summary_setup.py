@@ -46,7 +46,6 @@ class AddressSummarySetUp(models.TransientModel):
         default=_default_file_name
     )
 
-    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -59,7 +58,6 @@ class AddressSummarySetUp(models.TransientModel):
         }
         return action
 
-    # @api.multi
     def do_address_summary_setup(self):
         self.ensure_one()
 
@@ -71,13 +69,12 @@ class AddressSummarySetUp(models.TransientModel):
 
         return True
 
-    # @api.multi
-    def do_populate_all_families(self):
+    def do_populate_all_addresses(self):
         self.ensure_one()
 
         Address = self.env['clv.address']
-        families = Address.search([])
+        addresses = Address.search([])
 
-        self.address_ids = families
+        self.address_ids = addresses
 
         return self._reopen_form()
