@@ -46,7 +46,6 @@ class PersonSummarySetUp(models.TransientModel):
         default=_default_file_name
     )
 
-    # @api.multi
     def _reopen_form(self):
         self.ensure_one()
         action = {
@@ -59,7 +58,6 @@ class PersonSummarySetUp(models.TransientModel):
         }
         return action
 
-    # @api.multi
     def do_person_summary_setup(self):
         self.ensure_one()
 
@@ -71,7 +69,6 @@ class PersonSummarySetUp(models.TransientModel):
 
         return True
 
-    # @api.multi
     def do_populate_all_persons(self):
         self.ensure_one()
 
