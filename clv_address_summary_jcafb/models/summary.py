@@ -82,8 +82,8 @@ class Address(models.Model):
 
                 if action_call:
 
-                    summary.state = 'Unknown'
-                    summary.outcome_text = False
+                    # summary.state = 'Unknown'
+                    # summary.outcome_text = False
 
                     exec(action_call)
 

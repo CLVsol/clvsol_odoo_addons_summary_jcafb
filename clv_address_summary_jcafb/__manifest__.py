@@ -5,7 +5,7 @@
 {
     'name': 'Address Summary (for CLVhealth-JCAFB Solution)',
     'summary': 'Address Summary Module used in CLVhealth-JCAFB Solution.',
-    'version': '12.0.4.0',
+    'version': '14.0.5.0',
     'author': 'Carlos Eduardo Vercelino - CLVsol',
     'category': 'CLVsol Solutions',
     'license': 'AGPL-3',
@@ -15,6 +15,7 @@
         'clv_summary',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'data/address_summary.xml',
         'views/summary_view.xml',
         'wizard/address_summary_setup_view.xml',

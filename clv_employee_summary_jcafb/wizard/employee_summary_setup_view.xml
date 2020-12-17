@@ -33,13 +33,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="hr_employee_summary_setup_action"
-        name="Employee Summary Set Up"
-        binding_model="hr.employee"
-        res_model="hr.employee.summary_setup"
-        view_mode="form"
-        target="new"
-    />
+    <record id="hr_employee_summary_setup_action" model="ir.actions.act_window">
+        <field name="name">Employee Summary Set Up</field>
+        <field name="binding_model_id" ref="model_hr_employee"/>
+        <field name="res_model">hr.employee.summary_setup</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>

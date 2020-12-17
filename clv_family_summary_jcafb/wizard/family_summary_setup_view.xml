@@ -10,7 +10,7 @@
         <field name="arch" type="xml">
             <form>
                 <div class="oe_right">
-                    <button type="object" name="do_populate_all_familyes" string="Get All Families"/>
+                    <button type="object" name="do_populate_all_families" string="Get All Families"/>
                 </div>
                 <label for="family_ids"/>
                 <field name="family_ids"/>
@@ -33,13 +33,12 @@
     </record>
 
     <!-- More button Action -->
-    <act_window 
-        id="clv_family_summary_setup_action"
-        name="Family Summary Set Up"
-        binding_model="clv.family"
-        res_model="clv.family.summary_setup"
-        view_mode="form"
-        target="new"
-    />
+    <record id="clv_family_summary_setup_action" model="ir.actions.act_window">
+        <field name="name">Family Summary Set Up</field>
+        <field name="binding_model_id" ref="model_clv_family"/>
+        <field name="res_model">clv.family.summary_setup</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
 </odoo>
