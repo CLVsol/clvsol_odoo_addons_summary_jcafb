@@ -82,8 +82,8 @@ class PersonAux(models.Model):
 
                 if action_call:
 
-                    summary.state = 'Unknown'
-                    summary.outcome_text = False
+                    # summary.state = 'Unknown'
+                    # summary.outcome_text = False
 
                     exec(action_call)
 
@@ -128,6 +128,10 @@ class Summary(models.Model):
             ('reg_state', '!=', 'cancelled'),
         ]
         documents = Document.search(search_domain)
+        search_domain = [
+            ('ref_id', '=', model_object._name + ',' + str(model_object.id)),
+            # ('reg_state', '!=', 'cancelled'),
+        ]
         event_attendees = EventAttendee.search(search_domain)
         search_domain = [
             ('ref_id', '=', model_object._name + ',' + str(model_object.id)),
