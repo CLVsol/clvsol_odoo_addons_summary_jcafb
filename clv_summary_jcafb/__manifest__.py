@@ -29,6 +29,7 @@
         'views/summary_address_view.xml',
         'views/summary_family_view.xml',
         'views/summary_person_view.xml',
+        'views/summary_patient_view.xml',
         'views/global_settings_view.xml',
         'wizard/summary_setup_view.xml',
     ],
