@@ -16,6 +16,7 @@
         'clv_event_jcafb',
         'clv_person_jcafb',
         'clv_summary',
+        'clv_patient_jcafb',
     ],
     'data': [
         'security/ir.model.access.csv',
