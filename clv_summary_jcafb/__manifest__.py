@@ -16,6 +16,7 @@
         'clv_event_jcafb',
         'clv_person_jcafb',
         'clv_summary',
+        # 'clv_patient_jcafb',
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -29,6 +30,7 @@
         'views/summary_address_view.xml',
         'views/summary_family_view.xml',
         'views/summary_person_view.xml',
+        # 'views/summary_patient_view.xml',
         'views/global_settings_view.xml',
         'wizard/summary_setup_view.xml',
     ],

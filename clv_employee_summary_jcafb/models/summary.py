@@ -113,6 +113,8 @@ class Summary(models.Model):
         SummaryFamily = self.env['clv.summary.family']
         Person = self.env['clv.person']
         SummaryPerson = self.env['clv.summary.person']
+        Patient = self.env['clv.patient']
+        SummaryPatient = self.env['clv.summary.patient']
 
         summary_documents = SummaryDocument.search([
             ('summary_id', '=', summary.id),
@@ -149,6 +151,11 @@ class Summary(models.Model):
         ])
         summary_persons.unlink()
 
+        summary_patients = SummaryPatient.search([
+            ('summary_id', '=', summary.id),
+        ])
+        summary_patients.unlink()
+
         search_domain = [
             ('employee_id', '=', model_object.id),
         ]
@@ -163,6 +170,11 @@ class Summary(models.Model):
             ('employee_id', '=', model_object.id),
         ]
         persons = Person.search(search_domain)
+
+        search_domain = [
+            ('employee_id', '=', model_object.id),
+        ]
+        patients = Patient.search(search_domain)
 
         for address in addresses:
 
@@ -325,6 +337,62 @@ class Summary(models.Model):
             for lab_test_report in lab_test_reports:
 
                 if lab_test_report.phase_id.id == person.phase_id.id:
+
+                    values = {
+                        'summary_id': summary.id,
+                        'lab_test_report_id': lab_test_report.id,
+                    }
+                    SummaryLabTestReport.create(values)
+
+        for patient in patients:
+
+            values = {
+                'summary_id': summary.id,
+                'patient_id': patient.id,
+            }
+            SummaryPatient.create(values)
+
+            search_domain = [
+                ('ref_id', '=', 'clv.patient' + ',' + str(patient.id)),
+            ]
+            documents = Document.search(search_domain)
+            lab_test_requests = LabTestRequest.search(search_domain)
+            lab_test_results = LabTestResult.search(search_domain)
+            lab_test_reports = LabTestReport.search(search_domain)
+
+            for document in documents:
+
+                if document.phase_id.id == patient.phase_id.id:
+
+                    values = {
+                        'summary_id': summary.id,
+                        'document_id': document.id,
+                    }
+                    SummaryDocument.create(values)
+
+            for lab_test_request in lab_test_requests:
+
+                if lab_test_request.phase_id.id == patient.phase_id.id:
+
+                    values = {
+                        'summary_id': summary.id,
+                        'lab_test_request_id': lab_test_request.id,
+                    }
+                    SummaryLabTestRequest.create(values)
+
+            for lab_test_result in lab_test_results:
+
+                if lab_test_result.phase_id.id == patient.phase_id.id:
+
+                    values = {
+                        'summary_id': summary.id,
+                        'lab_test_result_id': lab_test_result.id,
+                    }
+                    SummaryLabTestResult.create(values)
+
+            for lab_test_report in lab_test_reports:
+
+                if lab_test_report.phase_id.id == patient.phase_id.id:
 
                     values = {
                         'summary_id': summary.id,
