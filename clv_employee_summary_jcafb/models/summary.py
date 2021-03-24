@@ -113,6 +113,8 @@ class Summary(models.Model):
         SummaryFamily = self.env['clv.summary.family']
         Person = self.env['clv.person']
         SummaryPerson = self.env['clv.summary.person']
+        Residence = self.env['clv.residence']
+        SummaryResidence = self.env['clv.summary.residence']
         Patient = self.env['clv.patient']
         SummaryPatient = self.env['clv.summary.patient']
 
@@ -151,6 +153,11 @@ class Summary(models.Model):
         ])
         summary_persons.unlink()
 
+        summary_residences = SummaryResidence.search([
+            ('summary_id', '=', summary.id),
+        ])
+        summary_residences.unlink()
+
         summary_patients = SummaryPatient.search([
             ('summary_id', '=', summary.id),
         ])
@@ -170,6 +177,11 @@ class Summary(models.Model):
             ('employee_id', '=', model_object.id),
         ]
         persons = Person.search(search_domain)
+
+        search_domain = [
+            ('employee_id', '=', model_object.id),
+        ]
+        residences = Residence.search(search_domain)
 
         search_domain = [
             ('employee_id', '=', model_object.id),
@@ -344,6 +356,62 @@ class Summary(models.Model):
                     }
                     SummaryLabTestReport.create(values)
 
+        for residence in residences:
+
+            values = {
+                'summary_id': summary.id,
+                'residence_id': residence.id,
+            }
+            SummaryResidence.create(values)
+
+            search_domain = [
+                ('ref_id', '=', 'clv.residence' + ',' + str(residence.id)),
+            ]
+            documents = Document.search(search_domain)
+            lab_test_requests = LabTestRequest.search(search_domain)
+            lab_test_results = LabTestResult.search(search_domain)
+            lab_test_reports = LabTestReport.search(search_domain)
+
+            for document in documents:
+
+                if document.phase_id.id == residence.phase_id.id:
+
+                    values = {
+                        'summary_id': summary.id,
+                        'document_id': document.id,
+                    }
+                    SummaryDocument.create(values)
+
+            for lab_test_request in lab_test_requests:
+
+                if lab_test_request.phase_id.id == residence.phase_id.id:
+
+                    values = {
+                        'summary_id': summary.id,
+                        'lab_test_request_id': lab_test_request.id,
+                    }
+                    SummaryLabTestRequest.create(values)
+
+            for lab_test_result in lab_test_results:
+
+                if lab_test_result.phase_id.id == residence.phase_id.id:
+
+                    values = {
+                        'summary_id': summary.id,
+                        'lab_test_result_id': lab_test_result.id,
+                    }
+                    SummaryLabTestResult.create(values)
+
+            for lab_test_report in lab_test_reports:
+
+                if lab_test_report.phase_id.id == residence.phase_id.id:
+
+                    values = {
+                        'summary_id': summary.id,
+                        'lab_test_report_id': lab_test_report.id,
+                    }
+                    SummaryLabTestReport.create(values)
+
         for patient in patients:
 
             values = {
@@ -412,6 +480,7 @@ class Summary(models.Model):
         model_object_code = model_object.code
 
         AddressCategory = self.env['clv.address.category']
+        ResidenceCategory = self.env['clv.address.category']
 
         FileSystemDirectory = self.env['clv.file_system.directory']
         file_system_directory = FileSystemDirectory.search([
@@ -453,7 +522,7 @@ class Summary(models.Model):
         row_nr += 2
 
         col_address_category = 0
-        col_district = 2
+        col_street2 = 2
         col_address = 4
         col_person = 6
 
@@ -463,20 +532,20 @@ class Summary(models.Model):
             sheet.write(row_nr, col_address_category, address_category.name, style=style_bold)
             row_nr += 2
 
-            districts = []
+            street2s = []
             for summary_address in summary.summary_address_ids:
                 if summary_address.address_category_ids.name == address_category.name:
-                    if summary_address.address_id.district not in districts:
-                        districts.append(summary_address.address_id.district)
+                    if summary_address.address_id.street2 not in street2s:
+                        street2s.append(summary_address.address_id.street2)
 
-            for district in districts:
+            for street2 in street2s:
 
-                sheet.write(row_nr, col_district, district, style=style_bold)
+                sheet.write(row_nr, col_street2, street2, style=style_bold)
                 row_nr += 2
 
                 addresses = []
                 for summary_address in summary.summary_address_ids:
-                    if summary_address.address_id.district == district and \
+                    if summary_address.address_id.street2 == street2 and \
                        summary_address.address_id.state == 'selected':
                         if summary_address.address_id not in addresses:
                             addresses.append(summary_address.address_id)
@@ -535,7 +604,7 @@ class Summary(models.Model):
 
                 addresses = []
                 for summary_address in summary.summary_address_ids:
-                    if summary_address.address_id.district == district and \
+                    if summary_address.address_id.street2 == street2 and \
                        summary_address.address_id.state == 'waiting':
                         if summary_address.address_id not in addresses:
                             addresses.append(summary_address.address_id)
@@ -590,6 +659,120 @@ class Summary(models.Model):
                         sheet.write(row_nr, col_person + 30,
                                     '(' + person.category_names + ' - ' + person.age_reference_years + ')')
                         sheet.write(row_nr, col_person + 37, person.state)
+                        row_nr += 2
+
+        col_residence_category = 0
+        col_street2 = 2
+        col_residence = 4
+        col_patient = 6
+
+        residence_categories = ResidenceCategory.search([])
+        for residence_category in residence_categories:
+
+            sheet.write(row_nr, col_residence_category, residence_category.name, style=style_bold)
+            row_nr += 2
+
+            street2s = []
+            for summary_residence in summary.summary_residence_ids:
+                if summary_residence.residence_category_ids.name == residence_category.name:
+                    if summary_residence.residence_id.street2 not in street2s:
+                        street2s.append(summary_residence.residence_id.street2)
+
+            for street2 in street2s:
+
+                sheet.write(row_nr, col_street2, street2, style=style_bold)
+                row_nr += 2
+
+                residences = []
+                for summary_residence in summary.summary_residence_ids:
+                    if summary_residence.residence_id.street2 == street2 and \
+                       summary_residence.residence_id.state == 'selected':
+                        if summary_residence.residence_id not in residences:
+                            residences.append(summary_residence.residence_id)
+
+                for residence in residences:
+
+                    sheet.write(row_nr, col_residence, '[' + residence.code + ']')
+                    sheet.write(row_nr, col_residence + 7, residence.name, style=style_bold)
+                    sheet.write(row_nr, col_residence + 36, residence.state, style=style_bold)
+                    row_nr += 2
+
+                    patients = []
+                    for summary_patient in summary.summary_patient_ids:
+                        if summary_patient.patient_id.residence_id == residence and \
+                           summary_patient.patient_id.state == 'selected':
+                            if summary_patient.patient_id not in patients:
+                                patients.append(summary_patient.patient_id)
+
+                    for patient in patients:
+
+                        sheet.write(row_nr, col_patient, '[' + patient.code + ']')
+                        sheet.write(row_nr, col_patient + 7, patient.name, style=style_bold)
+                        sheet.write(row_nr, col_patient + 30,
+                                    '(' + str(patient.category_names) + ' - ' + patient.age_reference_years + ')')
+                        sheet.write(row_nr, col_patient + 37, patient.state)
+                        row_nr += 2
+
+                    patients = []
+                    for summary_patient in summary.summary_patient_ids:
+                        if summary_patient.patient_id.residence_id == residence and \
+                           summary_patient.patient_id.state == 'waiting':
+                            if summary_patient.patient_id not in patients:
+                                patients.append(summary_patient.patient_id)
+
+                    for patient in patients:
+
+                        sheet.write(row_nr, col_patient, '[' + patient.code + ']')
+                        sheet.write(row_nr, col_patient + 7, patient.name, style=style_bold)
+                        sheet.write(row_nr, col_patient + 30,
+                                    '(' + patient.category_names + ' - ' + patient.age_reference_years + ')')
+                        sheet.write(row_nr, col_patient + 37, patient.state)
+                        row_nr += 2
+
+                residences = []
+                for summary_residence in summary.summary_residence_ids:
+                    if summary_residence.residence_id.street2 == street2 and \
+                       summary_residence.residence_id.state == 'waiting':
+                        if summary_residence.residence_id not in residences:
+                            residences.append(summary_residence.residence_id)
+
+                for residence in residences:
+
+                    sheet.write(row_nr, col_residence, '[' + residence.code + ']')
+                    sheet.write(row_nr, col_residence + 7, residence.name, style=style_bold)
+                    sheet.write(row_nr, col_residence + 36, residence.state, style=style_bold)
+                    row_nr += 2
+
+                    patients = []
+                    for summary_patient in summary.summary_patient_ids:
+                        if summary_patient.patient_id.residence_id == residence and \
+                           summary_patient.patient_id.state == 'selected':
+                            if summary_patient.patient_id not in patients:
+                                patients.append(summary_patient.patient_id)
+
+                    for patient in patients:
+
+                        sheet.write(row_nr, col_patient, '[' + patient.code + ']')
+                        sheet.write(row_nr, col_patient + 7, patient.name, style=style_bold)
+                        sheet.write(row_nr, col_patient + 30,
+                                    '(' + patient.category_names + ' - ' + patient.age_reference_years + ')')
+                        sheet.write(row_nr, col_patient + 37, patient.state)
+                        row_nr += 2
+
+                    patients = []
+                    for summary_patient in summary.summary_patient_ids:
+                        if summary_patient.patient_id.residence_id == residence and \
+                           summary_patient.patient_id.state == 'waiting':
+                            if summary_patient.patient_id not in patients:
+                                patients.append(summary_patient.patient_id)
+
+                    for patient in patients:
+
+                        sheet.write(row_nr, col_patient, '[' + patient.code + ']')
+                        sheet.write(row_nr, col_patient + 7, patient.name, style=style_bold)
+                        sheet.write(row_nr, col_patient + 30,
+                                    '(' + patient.category_names + ' - ' + patient.age_reference_years + ')')
+                        sheet.write(row_nr, col_patient + 37, patient.state)
                         row_nr += 2
 
         wbook.save(file_path)
