@@ -10,5 +10,6 @@ from . import summary_event
 from . import summary_address
 from . import summary_family
 from . import summary_person
-# from . import summary_patient
+from . import summary_residence
+from . import summary_patient
 from . import global_settings

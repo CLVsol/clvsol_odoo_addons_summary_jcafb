@@ -32,6 +32,14 @@ access_clv_summary_person_user,clv.summary.person.user,model_clv_summary_person,
 access_clv_summary_person_manager,clv.summary.person.manager,model_clv_summary_person,clv_summary.group_manager,1,1,1,0
 access_clv_summary_person_supmanager,clv.summary.person.supmanager,model_clv_summary_person,clv_summary.group_supmanager,1,1,1,1
 
+access_clv_summary_residence_user,clv.summary.residence.user,model_clv_summary_residence,clv_summary.group_user,1,0,0,0
+access_clv_summary_residence_manager,clv.summary.residence.manager,model_clv_summary_residence,clv_summary.group_manager,1,1,1,0
+access_clv_summary_residence_supmanager,clv.summary.residence.supmanager,model_clv_summary_residence,clv_summary.group_supmanager,1,1,1,1
+
+access_clv_summary_patient_user,clv.summary.patient.user,model_clv_summary_patient,clv_summary.group_user,1,0,0,0
+access_clv_summary_patient_manager,clv.summary.patient.manager,model_clv_summary_patient,clv_summary.group_manager,1,1,1,0
+access_clv_summary_patient_supmanager,clv.summary.patient.supmanager,model_clv_summary_patient,clv_summary.group_supmanager,1,1,1,1
+
 access_clv_summary_summary_setup_user,clv.summary.summary_setup.user,model_clv_summary_summary_setup,clv_summary.group_user,1,0,0,0
 access_clv_summary_summary_setup_manager,clv.summary.summary_setup.manager,model_clv_summary_summary_setup,clv_summary.group_manager,1,1,1,0
 access_clv_summary_summary_setup_supmanager,clv.summary.summary_setup.supmanager,model_clv_summary_summary_setup,clv_summary.group_supmanager,1,1,1,1
