@@ -252,41 +252,6 @@ class Summary(models.Model):
         row.write(3, model_object.employee_id.name)
         row_nr += 1
 
-        # row_nr += 1
-        # row = sheet.row(row_nr)
-        # row.write(0, 'Address:')
-        # row.write(3, model_object.ref_address_id.name)
-        # row_nr += 1
-        # row = sheet.row(row_nr)
-        # row.write(3, model_object.ref_address_id.district)
-        # row_nr += 1
-        # row = sheet.row(row_nr)
-        # row.write(0, 'Address Categories:')
-        # row.write(3, model_object.ref_address_id.category_ids.name)
-        # row_nr += 1
-        # row = sheet.row(row_nr)
-        # row.write(0, 'Address Code:')
-        # row.write(3, model_object.ref_address_id.code)
-        # row_nr += 1
-        # row = sheet.row(row_nr)
-        # row.write(0, 'Address State:')
-        # row.write(3, model_object.ref_address_id.state)
-        # row_nr += 1
-
-        # row_nr += 1
-        # row = sheet.row(row_nr)
-        # row.write(0, 'Family:')
-        # row.write(3, model_object.family_id.name)
-        # row_nr += 1
-        # row = sheet.row(row_nr)
-        # row.write(0, 'Family Code:')
-        # row.write(3, model_object.family_id.code)
-        # row_nr += 1
-        # row = sheet.row(row_nr)
-        # row.write(0, 'Family State:')
-        # row.write(3, model_object.family_id.state)
-        # row_nr += 1
-
         row_nr += 1
         row = sheet.row(row_nr)
         row.write(0, 'Patient:')
@@ -328,7 +293,7 @@ class Summary(models.Model):
         for summary_document in self.summary_document_ids:
 
             row = sheet.row(row_nr)
-            # row.write(0, summary_document.document_id.name)
+            row.write(0, summary_document.document_id.document_type_id.name)
             row.write(2, summary_document.document_id.code)
             row.write(4, summary_document.document_category_ids.name)
             row_nr += 1
