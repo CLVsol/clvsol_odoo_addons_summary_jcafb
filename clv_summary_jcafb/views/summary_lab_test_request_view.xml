@@ -14,6 +14,7 @@
                     <group>
                         <field name="summary_id" options="{'no_open': False, 'no_create': True}"/>
                         <field name="lab_test_request_id" options="{'no_open': False, 'no_create': True}"/>
+                        <field name="lab_test_ref_id"/>
                         <field name="lab_test_type_ids" options="'no_open': False, 'no_create': True}"/>
                         <field name="lab_test_request_state"/>
                         <field name="lab_test_request_phase_id"/>
@@ -37,6 +38,7 @@
             <tree name="lab_test_requests" string="Summary Lab Test Requests">
                 <field name="summary_id" invisible="True"/>
                 <field name="lab_test_request_id"/>
+                <field name="lab_test_ref_id"/>
                 <field name="lab_test_type_ids"/>
                 <field name="lab_test_type_names"/>
                 <field name="lab_test_request_state"/>
@@ -70,6 +72,7 @@
             <search string="Summary Lab Test Requests">
                 <field name="summary_id"/>
                 <field name="lab_test_request_id"/>
+                <field name="lab_test_ref_id"/>
                 <field name="lab_test_type_ids"/>
                 <field name="lab_test_type_names"/>
                 <field name="lab_test_request_state"/>
