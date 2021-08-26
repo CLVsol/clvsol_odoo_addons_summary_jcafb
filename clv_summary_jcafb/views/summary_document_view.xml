@@ -14,6 +14,7 @@
                     <group>
                         <field name="summary_id" options="{'no_open': False, 'no_create': True}"/>
                         <field name="document_id" options="{'no_open': False, 'no_create': True}"/>
+                        <field name="document_ref_id"/>
                         <field name="document_category_ids" widget="many2many_tags" options="{'color_field': 'color','no_open': False, 'no_create': True}"/>
                         <field name="document_state"/>
                         <field name="document_phase_id"/>
@@ -38,6 +39,7 @@
             <tree name="documents" string="Summary Documents">
                 <field name="summary_id" invisible="True"/>
                 <field name="document_id"/>
+                <field name="document_ref_id"/>
                 <field name="document_category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="document_state"/>
                 <field name="document_phase_id"/>
@@ -71,6 +73,7 @@
             <search string="Summary Documents">
                 <field name="summary_id"/>
                 <field name="document_id"/>
+                <field name="document_ref_id"/>
                 <field name="document_category_ids"/>
                 <field name="document_state"/>
                 <field name="document_phase_id"/>

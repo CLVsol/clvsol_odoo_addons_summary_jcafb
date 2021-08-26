@@ -20,6 +20,11 @@ class SummaryDocument(models.Model):
         string='Document',
         ondelete='cascade'
     )
+    document_ref_id = fields.Reference(
+        string='Refers to',
+        related='document_id.ref_id',
+        store=False
+    )
     document_global_tag_ids = fields.Many2many(
         string='Document Global Tags',
         related='document_id.global_tag_ids',
