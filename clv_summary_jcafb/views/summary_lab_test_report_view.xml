@@ -15,6 +15,7 @@
                         <field name="summary_id" options="{'no_open': False, 'no_create': True}"/>
                         <field name="lab_test_request_id" options="{'no_open': False, 'no_create': True}"/>
                         <field name="lab_test_report_id" options="{'no_open': False, 'no_create': True}"/>
+                        <field name="lab_test_ref_id"/>
                         <field name="lab_test_type_id" options="'no_open': False, 'no_create': True}"/>
                         <field name="lab_test_report_state"/>
                         <field name="lab_test_report_phase_id"/>
@@ -39,6 +40,7 @@
                 <field name="summary_id" invisible="True"/>
                 <field name="lab_test_request_id"/>
                 <field name="lab_test_report_id"/>
+                <field name="lab_test_ref_id"/>
                 <field name="lab_test_type_id"/>
                 <field name="lab_test_report_state"/>
                 <field name="lab_test_report_phase_id"/>
@@ -72,6 +74,7 @@
                 <field name="summary_id"/>
                 <field name="lab_test_request_id"/>
                 <field name="lab_test_report_id"/>
+                <field name="lab_test_ref_id"/>
                 <field name="lab_test_type_id"/>
                 <field name="lab_test_report_state"/>
                 <field name="lab_test_report_phase_id"/>

@@ -20,6 +20,11 @@ class SummaryLabTestRequest(models.Model):
         string='Lab Test Request',
         ondelete='cascade'
     )
+    lab_test_ref_id = fields.Reference(
+        string='Refers to',
+        related='lab_test_request_id.ref_id',
+        store=False
+    )
     lab_test_type_ids = fields.Many2many(
         comodel_name='clv.lab_test.type',
         string='Lab Test Types',
