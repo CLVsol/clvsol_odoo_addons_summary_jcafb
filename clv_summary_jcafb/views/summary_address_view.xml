@@ -40,8 +40,8 @@
                 <field name="address_id"/>
                 <field name="address_category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="address_state"/>
-                <field name="address_phase_id"/>
-                <field name="address_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="address_phase_id" invisible="True"/>
+                <field name="address_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" invisible="True"/>
             </tree>
         </field>
     </record>
