@@ -20,6 +20,11 @@ class SummaryDocument(models.Model):
         string='Document',
         ondelete='cascade'
     )
+    document_type_id = fields.Many2one(
+        string='Document Type',
+        related='document_id.document_type_id',
+        store=False
+    )
     document_ref_id = fields.Reference(
         string='Refers to',
         related='document_id.ref_id',
