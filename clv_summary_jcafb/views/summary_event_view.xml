@@ -40,8 +40,8 @@
                 <field name="event_id"/>
                 <field name="event_category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="event_state"/>
-                <field name="event_phase_id"/>
-                <field name="event_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="event_phase_id" invisible="True"/>
+                <field name="event_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" invisible="True"/>
             </tree>
         </field>
     </record>
