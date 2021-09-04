@@ -20,6 +20,11 @@ class SummaryDocument(models.Model):
         string='Document',
         ondelete='cascade'
     )
+    document_type_description = fields.Char(
+        string='Document Type Description',
+        related='document_id.document_type_description',
+        store=False
+    )
     document_type_id = fields.Many2one(
         string='Document Type',
         related='document_id.document_type_id',
