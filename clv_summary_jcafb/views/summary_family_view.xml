@@ -40,8 +40,8 @@
                 <field name="family_id"/>
                 <field name="family_category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="family_state"/>
-                <field name="family_phase_id"/>
-                <field name="family_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="family_phase_id" invisible="True"/>
+                <field name="family_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" invisible="True"/>
             </tree>
         </field>
     </record>

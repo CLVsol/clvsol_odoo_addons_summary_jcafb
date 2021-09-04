@@ -32,7 +32,7 @@ class SummaryLabTestRequest(models.Model):
         store=False
     )
     lab_test_type_names = fields.Char(
-        string='Category Names Suport',
+        string='Lab Test Type',
         compute='_compute_lab_test_type_names',
         store=False
     )
