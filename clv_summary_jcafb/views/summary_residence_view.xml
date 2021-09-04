@@ -40,8 +40,8 @@
                 <field name="residence_id"/>
                 <field name="residence_category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="residence_state"/>
-                <field name="residence_phase_id"/>
-                <field name="residence_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="residence_phase_id" invisible="True"/>
+                <field name="residence_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" invisible="True"/>
             </tree>
         </field>
     </record>
