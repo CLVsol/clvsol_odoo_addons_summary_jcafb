@@ -44,8 +44,8 @@
                 <field name="person_birthday"/>
                 <field name="person_category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="person_state"/>
-                <field name="person_phase_id"/>
-                <field name="person_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="person_phase_id" invisible="True"/>
+                <field name="person_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" invisible="True"/>
             </tree>
         </field>
     </record>
