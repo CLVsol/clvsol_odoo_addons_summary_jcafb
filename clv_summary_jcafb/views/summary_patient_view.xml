@@ -44,8 +44,8 @@
                 <field name="patient_birthday"/>
                 <field name="patient_category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="patient_state"/>
-                <field name="patient_phase_id"/>
-                <field name="patient_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="patient_phase_id" invisible="True"/>
+                <field name="patient_global_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" invisible="True"/>
             </tree>
         </field>
     </record>
